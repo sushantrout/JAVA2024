@@ -2,17 +2,21 @@ package com.tech.service;
 
 import com.tech.entity.Address;
 import com.tech.repo.AddressRepository;
+import com.tech.service.external.TaskClient;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class AddressService {
-
-    @Autowired
-    private AddressRepository addressRepository;
+    private final AddressRepository addressRepository;
+    private final TaskClient taskClient;
 
     // Retrieve all addresses
     public List<Address> getAllAddresses() {
@@ -21,6 +25,8 @@ public class AddressService {
 
     // Retrieve an address by its ID
     public Optional<Address> getAddressById(Long id) {
+        String task = taskClient.getTask();
+        log.info("Task: {}", task);
         return addressRepository.findById(id);
     }
 

@@ -1,4 +1,4 @@
-package com.tech.filter;
+package com.tech.config;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -11,7 +11,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 
 @Component
-public class DownstreamCorrelationIdFilter extends OncePerRequestFilter {
+public class CorrelationIdFilter extends OncePerRequestFilter {
 
     private static final String CORRELATION_ID_HEADER_NAME = "X-Correlation-Id";
 
